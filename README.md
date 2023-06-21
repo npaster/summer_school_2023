@@ -6,7 +6,7 @@ Practical computer session
 - TP3: VEM
 - TP4: HHO
 
-For TP3, you need to install Octave (https://octave.org). For the other, you need the salome_meca singularity container.
+For TP3, you need to install Octave (https://octave.org) or Matlab. For the other, you need the salome_meca singularity container.
 
 # Instruction to install salome_meca singularity container
 The salome_meca... container is based on the official salome_meca container. The main difference is that we have compiled a MPI-version of code_aster and code_saturne. The official website for code_aster and salome_meca (https://code-aster.org/V2/spip.php?rubrique1) and for code_saturne (https://www.code-saturne.org/cms/web/)
