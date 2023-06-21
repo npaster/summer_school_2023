@@ -114,7 +114,7 @@ cd /opt/public/code_aster
 and lauch the test that
 
 ```bash
-./bin/run_aster share/aster/test/ssnp170a.export
+./bin/run_aster share/aster/tests/ssnp170a.export
 ```
 You will see this output at the end:
 
