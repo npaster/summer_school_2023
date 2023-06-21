@@ -1,0 +1,20 @@
+# numero vertici, 2, 0, marker imposto (1 si, 0 no)
+4 2 0 1
+# vertice, x, y, marker
+1 0.000000e+00 0.000000e+00 +1
+2 1.000000e+00 0.000000e+00 +1
+3 1.000000e+00 1.000000e+00 +1
+4 0.000000e+00 1.000000e+00 +1
+# number of segments, marker imposto (1 si, 0 no)
+4 1
+# lato del bordo, estremo 1, estremo 2, marker
+1 1 2 +1
+2 2 3 +1
+3 3 4 +1
+4 4 1 +1
+# numero di buchi
+0
+# numero di vincoli di area
+1
+# regione, punto nella regione, vincolo di area
+1 5.000000e-01 5.000000e-01 4.330127e-03
