@@ -106,12 +106,12 @@ and to use in bash mode
 
 then you are in a terminal. 
 
-To test your installation. Go to 
+To test your installation. Run the container in bash mode (with the previous command), then go to code_aster directory with 
 
 ```bash
 cd /opt/public/code_aster
 ```
-and lauch the test that
+and launch the test:
 
 ```bash
 ./bin/run_aster share/aster/tests/ssnp170a.export
