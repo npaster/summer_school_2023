@@ -111,14 +111,31 @@ To test your installation. Run the container in bash mode (with the previous com
 ```bash
 cd /opt/public/code_aster
 ```
-and launch the test:
+and launch code_aster in python-mode:
 
 ```bash
-./bin/run_aster share/aster/tests/ssnp170a.export
+./bin/run_aster
+```
+Normally, code_aster runs in a python terminal with output:
+
+```none
+# ------------------------------------------------------------------------------------
+Execution of code_aster
+...
+```
+Import code_aster package
+```python
+import code_aster
+```
+
+Exit with 
+```python
+exit()
 ```
 You will see this output at the end:
 
 ```none
+...
 ------------------------------------------------------------------------------------
 ------- DIAGNOSTIC JOB : OK
 ------------------------------------------------------------------------------------
