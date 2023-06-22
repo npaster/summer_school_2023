@@ -16,7 +16,7 @@ The installation procedure is based on the official one https://gitlab.com/codea
 ## Singularity Installation
 
 The provided container is a singularity container. It is are compatible
-Singularity 3.5 and above.
+Singularity 3.6.4 and above.
 
 First, try to installation Singularity from your packages manager.
 Otherwise, it must be compiled from scratch.
