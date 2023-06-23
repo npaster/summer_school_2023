@@ -1,8 +1,8 @@
-# TP1: Solve laplacian problem with Hybrid High-Order methods
+# TP2: Solve laplacian problem with Hybrid High-Order methods
 
 ## Problem to solve
 
-The main goal is to solve the following weak fork of the Poisson problem:
+The main goal is to solve the following weak form of the Poisson problem:
 Find $u \in H^1_0(\Omega)$ such that
 $$ (\nabla u, \nabla v)_\Omega = (f,v)_\Omega, \: \forall  v \in H^1_0(\Omega) $$
 with $f \in L^2(\Omega)$. This problem is well-posed.
@@ -78,7 +78,7 @@ Moreover, there a complete output file named mess.txt. The online documentation 
 
 ## A test with a known solution
 
-The domain is the unit square $\Omega=[0,1]^2$ with analytical solution $u(x,y)=sin(\pi x)*sin(\pi y)$ and source load $f(x,y)=2\pi^2sin(\pi x)*sin(\pi y)$. Hence, we have homogeneous Dirichlet boundary conditions.
+The domain is the unit square $\Omega=[0,1]^2$ with analytical solution $u(x,y)=\sin(\pi x)*\sin(\pi y)$ and source load $f(x,y)=2\pi^2\sin(\pi x)*\sin(\pi y)$. Hence, we have homogeneous Dirichlet boundary conditions.
 
 In a code_aster command file, we can mix python and DSL (Domain Specific Language). Firstly, we define a mesh.
 
@@ -187,7 +187,7 @@ u_hho = mySolver.solve(rhs, diriBCs)
 
 ### Compute $L^2$ and $H^1$-norm errors
 
-Now, we can compute the $L^2$ and $H^1$-norm errors compare to the analytical solution
+Now, we can compute the $L^2$ and $H^1$-norm errors and compare them to the analytical solution
 
 ```python
 # create hho handler
@@ -286,7 +286,7 @@ for order in ("LINEAIRE", "QUADRATIQUE"):
         # ...
 ```
 
-You can saved error like that after declaration of variable:
+You can save the error like that after declaration of variable:
 
 ```python
 # compute L2 and H1-errors
@@ -319,7 +319,7 @@ for order in ("LINEAIRE", "QUADRATIQUE"):
     )
 ```
 
-Have you the correct convergence order ?
+Have you got the correct convergence order ?
 
 ### Visualization
 
