@@ -1,0 +1,81 @@
+# coding=utf-8
+# --------------------------------------------------------------------
+# Copyright (C) 1991 - 2023 - EDF R&D - www.code-aster.org
+# This file is part of code_aster.
+#
+# code_aster is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# code_aster is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with code_aster.  If not, see <http://www.gnu.org/licenses/>.
+# --------------------------------------------------------------------
+
+DEBUT()
+
+mesh0 = LIRE_MAILLAGE(FORMAT='MED',
+                     UNITE=20)
+
+mesh = CREA_MAILLAGE(MAILLAGE=mesh0, MODI_HHO=_F(TOUT="OUI",),)
+
+mesh = MODI_MAILLAGE(MAILLAGE=mesh, reuse=mesh, ORIE_PEAU=_F(GROUP_MA_PEAU=("Press"),),)
+
+model = AFFE_MODELE(AFFE=_F(MODELISATION='3D_HHO',
+                            FORMULATION="LINEAIRE",
+                            PHENOMENE='MECANIQUE',
+                            TOUT='OUI'),
+                    MAILLAGE=mesh)
+
+mater = DEFI_MATERIAU(ECRO_LINE=_F(D_SIGM_EPSI=0.0,
+                                     SY=150.0),
+                        ELAS=_F(E=200000.0,
+                                NU=0.3),
+                        HHO=_F(COEF_STAB = 200000*100),)
+
+materfl = AFFE_MATERIAU(AFFE=_F(MATER=(mater, ),
+                                TOUT='OUI'),
+                        MODELE=model)
+
+listr = DEFI_LIST_REEL(VALE=(0.0, 0.25, 0.75, 1.0),)
+
+times = DEFI_LIST_INST(DEFI_LIST=_F(LIST_INST=listr))
+
+func = DEFI_FONCTION(NOM_PARA='INST',
+                     VALE=(0.0, 0.0, 1.0, 1.0))
+
+mecabc = AFFE_CHAR_CINE(MECA_IMPO=(_F(DX=0.0,
+                                     GROUP_MA=('Sym_x', )),
+                                  _F(DY=0.0,
+                                     GROUP_MA=('Sym_y', )),
+                                  _F(DZ=0.0,
+                                     GROUP_MA=('Sym_z', ))),
+                        MODELE=model)
+
+mecach = AFFE_CHAR_MECA(MODELE=model,
+                        PRES_REP=_F(GROUP_MA=('Press', ),
+                                    PRES=450.0))
+
+resnonl = STAT_NON_LINE(CHAM_MATER=materfl,
+                        EXCIT=(_F(CHARGE=mecabc),
+                               _F(CHARGE=mecach,
+                                  FONC_MULT=func)),
+                        COMPORTEMENT=_F(DEFORMATION='GDEF_LOG',
+                                        RELATION='VMIS_ISOT_LINE'),
+                        INCREMENT=_F(LIST_INST=times),
+                        MODELE=model)
+
+resnonl = CALC_CHAMP(reuse=resnonl,
+                     CRITERES=('SIEQ_ELGA',),
+                     RESULTAT=resnonl)
+
+IMPR_RESU(FORMAT='MED',
+          RESU=_F(RESULTAT=resnonl),
+          UNITE=80)
+
+FIN()

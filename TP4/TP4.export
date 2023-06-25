@@ -1,0 +1,10 @@
+P time_limit 500
+P memory_limit 6024
+P ncpus 4
+P mpi_nbcpu 1
+P mpi_nbnoeud 1
+
+F comm TP4.comm D 1
+F mmed sphere_T4.med D 20
+F rmed result.med R 80
+F mess mess.txt R 6
